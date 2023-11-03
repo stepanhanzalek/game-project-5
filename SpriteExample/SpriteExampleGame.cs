@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
@@ -13,20 +12,15 @@ namespace WrongHole
     /// </summary>
     public class SpriteExampleGame : Game
     {
-        public static int score = 0;
+        public static int bestScore = 0;
         private readonly ScreenManager screenManager;
         private GraphicsDeviceManager graphics;
-
-        private SpriteBatch spriteBatch;
-        private Song bgMusic;
-        private Random random;
 
         /// <summary>
         /// Constructs the game
         /// </summary>
         public SpriteExampleGame()
         {
-            random = new Random();
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -56,13 +50,8 @@ namespace WrongHole
         /// </summary>
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            var _tilemap = Content.Load<TileMap>("tilemap");
-            bgMusic = Content.Load<Song>("bg_music");
             MediaPlayer.IsRepeating = true;
-            //TODO: MediaPlayer.Play(bgMusic);
-
-            score = int.Parse(File.ReadAllText(Constants.SCORE_PATH).Trim());
+            bestScore = int.Parse(File.ReadAllText(Constants.SCORE_PATH).Trim());
         }
 
         /// <summary>
@@ -71,7 +60,6 @@ namespace WrongHole
         /// <param name="gameTime">the measured game time</param>
         protected override void Update(GameTime gameTime)
         {
-            if (screenManager.GetScreens().Length == 0) screenManager.AddScreen(new TileMapLevelScreen(this, random.Next()), null);
             base.Update(gameTime);
         }
 
@@ -81,18 +69,20 @@ namespace WrongHole
         /// <param name="gameTime">the measured game time</param>
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.White);
             base.Draw(gameTime);
         }
 
         protected override void UnloadContent()
         {
-            File.WriteAllText(Constants.SCORE_PATH, score.ToString());
+            File.WriteAllText(Constants.SCORE_PATH, bestScore.ToString());
 
             base.UnloadContent();
         }
 
         private void AddInitialScreens()
         {
+            screenManager.AddScreen(new MainMenuScreen(), null);
         }
     }
 }

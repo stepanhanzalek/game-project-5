@@ -13,6 +13,8 @@ Assets used in this module include:
 This repository and associated video were created for the CIS 580 - Foundations of Game Programming course offered by the Department of Computer Science at Kansas State University.
 
 
+Cardboard texture <a href="https://www.freepik.com/free-photo/brown-texture_997226.htm#query=cardboard%20texture&position=6&from_view=keyword&track=ais">Image by tirachard</a> on Freepik
+
 todo
 All assets from the MonoGame port of the XNA Game State Management Sample, available at:
 

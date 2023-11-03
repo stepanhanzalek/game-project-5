@@ -40,6 +40,11 @@ namespace WrongHole.StateManagement
         public SpriteFont Font { get; private set; }
 
         /// <summary>
+        /// A SpriteFont shared by all GameScreens
+        /// </summary>
+        public SpriteFont FontSmall { get; private set; }
+
+        /// <summary>
         /// A blank texture that can be used by the screens.
         /// </summary>
         public Texture2D BlankTexture { get; private set; }
@@ -167,6 +172,7 @@ namespace WrongHole.StateManagement
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             Font = _content.Load<SpriteFont>("bangers");
+            FontSmall = _content.Load<SpriteFont>("bangers1");
             BlankTexture = _content.Load<Texture2D>("blank");
 
             // Tell each of the screens to load thier content
